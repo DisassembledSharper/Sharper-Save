@@ -20,7 +20,7 @@ When the protection is enabled, it will generates the data hash using the SHA-25
 ![Bytes Save](/imgs/bytessave.png)
 ![Save Hash](/imgs/savehash.png)
 
-The bytes shuffling makes difficult the view and reorganization of the original data and the hash generation will make possible to check the data integrity, and because the hash has a "salt", if the user does not knows it, a new hash injection to try to bypass the check won't be possible.
+The bytes shuffling makes difficult the view and reorganization of the original data and the hash generation will make possible to check the data integrity, and because the hash has a "salt", if the user does not know it, a new hash injection to try to bypass the check won't be possible.
 
 If we convert the shuffled bytes to text, we will have this result:
 > a"6st0.atait:}taaourNa40n4i"Da5:D{"tat83oeo20bl0"a71te0:"Dm7"n2la0"1:trf,D9"1"g",4,
