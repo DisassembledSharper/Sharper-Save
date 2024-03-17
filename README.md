@@ -8,6 +8,7 @@ The system contains the **SaveManager** ScriptableObject that provides the Save 
 
 ![Save Manager](/imgs/savemanager.png)
 ![Save Container](/imgs/savecontainer.png)
+
 In the **SaveManager** you can set if you want to save with or without data protection. When the protection is disabled, it will just save the data file containing the data in JSON, being possible a modification extremely simple by user.
 
 ![Json Save](/imgs/jsonsave.png)
