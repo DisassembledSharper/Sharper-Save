@@ -165,13 +165,14 @@ namespace SharperSave
                 }
              
                 fileStream.Close();
-                OnEndSave?.Invoke();
+                OnSaveSuccess?.Invoke();
             }
             catch (Exception e)
             { 
                 OnSaveError?.Invoke(e);
                 Debug.LogException(e);
             }
+            OnEndSave?.Invoke();
         }
         /// <summary>
         /// Loads the save file.
@@ -268,6 +269,7 @@ namespace SharperSave
             {
                 Debug.LogError("Load failed");
             }
+            OnEndLoad?.Invoke();
         }
 
         /// <summary>
