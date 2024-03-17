@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Save Container
   m_EditorClassIdentifier: 
   saveData:
-    intData: 99999
-    floatData: 0
-    boolData: 0
-    stringData: 
+    intData: 1244
+    floatData: 1.2
+    boolData: 1
+    stringData: Name

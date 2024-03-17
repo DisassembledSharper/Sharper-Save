@@ -116,11 +116,13 @@ namespace SharperSave
             try
             {
                 OnStartSave?.Invoke();
+
                 if (_saveFileName == "")
                 {
                     throw new Exception("Empty save file name");
                 }
-                else if (_saveFileExtension == "")
+
+                if (_saveFileExtension == "")
                 {
                     throw new Exception("Empty save file extension");
                 }
@@ -134,18 +136,18 @@ namespace SharperSave
                     {
                         streamWriter.Write(SaveIntegrityUtility.GetStringHash(saveContent, _hashSalt));
                     }
+
                     List<byte> shuffledBytes = SaveIntegrityUtility.ShuffleBytes(Encoding.UTF8.GetBytes(saveContent).ToList(), _shuffleSeed);
+
                     saveContent = "";
 
                     for (int i = 0; i < shuffledBytes.Count; i++)
                     {
-                        if (i >= shuffledBytes.Count - 1)
+                        saveContent += shuffledBytes[i].ToString();
+
+                        if (i < shuffledBytes.Count - 1)
                         {
-                            saveContent += shuffledBytes[i].ToString();
-                        }
-                        else
-                        {
-                            saveContent += shuffledBytes[i].ToString() + " ";
+                            saveContent += " ";
                         }
                     }
 
@@ -194,7 +196,7 @@ namespace SharperSave
                             var bytesList = new List<byte>();
 
                             content = binaryReader.ReadString();
-                            
+
                             foreach (string stringByte in content.Split(' '))
                             {
                                 bytesList.Add(Convert.ToByte(stringByte));

@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _saveFileName: save
   _saveFileExtension: sav
-  _hashPlayerPrefsKeyPrefix: hash
+  _hashFileName: hash
+  _hashFileExtension: hash
   _currentSlot: 0
-  _saveLocation: 0
-  _checkIntegrity: 1
+  _savePath: 0
+  _protectSave: 1
   _shuffleSeed: 1
+  _hashSalt: salt423
   _saveContainer: {fileID: 11400000, guid: f17343dfd1856234a8b5535ed82d84ba, type: 2}
