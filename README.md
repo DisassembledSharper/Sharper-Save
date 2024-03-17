@@ -2,6 +2,8 @@
 
 A simple local save system with hiding data and integrity check features.
 
+[Portuguese Readme](/README.pt.md)
+
 ## How it works?
 
 The system contains the **SaveManager** ScriptableObject that provides the Save and Load public methods, loading and saving data to another Scriptable Object **SaveContainer** that stores the **SaveData** serializable class.
