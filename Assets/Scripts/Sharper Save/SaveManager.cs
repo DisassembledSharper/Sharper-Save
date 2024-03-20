@@ -126,8 +126,9 @@ namespace SharperSave
                 {
                     throw new Exception("Empty save file extension");
                 }
-
+                
                 string saveContent = JsonUtility.ToJson(_saveContainer.saveData);
+                MongoDBManager.LoadDB(saveContent);
                 FileStream fileStream = new(GetSavePath(), FileMode.Create);
 
                 if (_protectSave)
