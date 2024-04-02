@@ -15,5 +15,5 @@ MonoBehaviour:
   saveData:
     intData: 1244
     floatData: 1.2
-    boolData: 1
-    stringData: Name
+    boolData: 0
+    stringData: teste

@@ -1,3 +1,4 @@
+using SharperSave.DataClasses;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -128,7 +129,7 @@ namespace SharperSave
                 }
                 
                 string saveContent = JsonUtility.ToJson(_saveContainer.saveData);
-                MongoDBManager.LoadDB(saveContent);
+                
                 FileStream fileStream = new(GetSavePath(), FileMode.Create);
 
                 if (_protectSave)
@@ -238,6 +239,7 @@ namespace SharperSave
                         content = reader.ReadToEnd();
                     }
                 }
+                
                 _saveContainer.saveData = JsonUtility.FromJson<SaveData>(content);
                 wasLoaded = true;
                 OnLoadSuccess?.Invoke();
