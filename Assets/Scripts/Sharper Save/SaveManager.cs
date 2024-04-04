@@ -157,6 +157,7 @@ namespace SharperSave
                     {
                         binaryWriter.Write(saveContent);
                     }
+                    RealmManager.Instance.SaveData(saveContent);
                 }
                 else
                 {
@@ -218,7 +219,7 @@ namespace SharperSave
                     {
                         previousHash = reader.ReadToEnd();
                     }
-
+                    Debug.Log(RealmManager.Instance.GetData());
                     if (previousHash == currentHash)
                     {
                         //Debug.Log("Hash pass");
