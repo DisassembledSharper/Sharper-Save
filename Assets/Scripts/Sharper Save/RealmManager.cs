@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using Realms;
-using MongoDB.Bson;
 using Realms.Sync;
 using System.Linq;
 using SharperSave.DataClasses;
@@ -10,7 +9,7 @@ namespace SharperSave
 {
     public class RealmManager : MonoBehaviour
     {
-        [SerializeField] private string _realmAppId = "sharpersave-thiya";
+        [SerializeField] private string _realmAppId = "YourAppId";
         [SerializeField] private SaveContainer _saveContainer;
         [SerializeField] private bool _isLogged;
 
@@ -19,7 +18,18 @@ namespace SharperSave
         private App _realmApp;
 
         public static RealmManager Instance { get; private set; }
-        
+
+        public Action OnStartConnect;
+        public Action OnConnect;
+        public Action<Exception> OnFailConnect;
+
+        public Action OnStartGetData;
+        public Action<Exception> OnFailGetData;
+
+        public Action OnStartSaveData;
+        public Action<Exception> OnFailSaveData;
+
+
         private void Awake()
         {
             Instance = this;
@@ -30,6 +40,7 @@ namespace SharperSave
         {
             try
             {
+                OnStartConnect?.Invoke();
                 _realmApp = App.Create(new AppConfiguration(_realmAppId));
                 _realmUser = await _realmApp.LogInAsync(Credentials.Anonymous());
                 _realm = await Realm.GetInstanceAsync(new FlexibleSyncConfiguration(_realmUser));
@@ -46,6 +57,7 @@ namespace SharperSave
             {
                 Debug.LogException(e);
                 _isLogged = false;
+                OnFailConnect?.Invoke(e);
             }
         }
 
@@ -53,6 +65,7 @@ namespace SharperSave
         {
             try
             {
+                OnStartGetData?.Invoke();
                 if (!_isLogged) throw new Exception("It is not logged.");
 
                 UserData result = new();
@@ -60,27 +73,17 @@ namespace SharperSave
 
                 if (result != null)
                 {
-                    Debug.Log("Achou");
                     return result.saveData;
                 }
                 else
                 {
-                    Debug.Log("Não achou");
-                    return null;
-
-                    //_realm.Write(() =>
-                    //{
-                    //    UserData data = new();
-                    //    data.OwnerId = _realmUser.Id;
-                    //    data.saveData = JsonUtility.ToJson(_saveContainer.saveData);
-                    //    data.Id = id;
-                    //    _realm.Add(data);
-                    //});
+                    throw new Exception("Failed to get data");
                 }
             }
             catch (Exception e)
             {
                 Debug.LogException(e);
+                OnFailGetData?.Invoke(e);
                 return null;
             }
         }
@@ -98,6 +101,7 @@ namespace SharperSave
             catch (Exception e)
             {
                 Debug.LogException(e);
+                OnFailSaveData?.Invoke(e);
             }
             
         }

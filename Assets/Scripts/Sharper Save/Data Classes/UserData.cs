@@ -16,6 +16,5 @@ namespace SharperSave.DataClasses
 
         [MapTo("saveData")]
         public string saveData { get; set; }
-        
     }
 }

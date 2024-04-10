@@ -406,8 +406,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae3e3a96ed9b49438658f56ac02b4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _realmAppId: sharpersave-thiya
+  _realmAppId: YourAppId
   _saveContainer: {fileID: 11400000, guid: f17343dfd1856234a8b5535ed82d84ba, type: 2}
+  _isLogged: 0
 --- !u!4 &947138983
 Transform:
   m_ObjectHideFlags: 0

@@ -62,12 +62,19 @@ namespace SharperSave
             {
                 hashBytes = hasher.ComputeHash(Encoding.UTF8.GetBytes(salt + content));
 
-                for (int i = 0; i < hashBytes.Length; i++)
-                {
-                    result += hashBytes[i].ToString("x2");
-                }
+                result = BytesToHexadecimal(hashBytes);
             }
+            return result;
+        }
 
+        private static string BytesToHexadecimal(byte[] bytesToConvert)
+        {
+            string result = "";
+
+            for (int i = 0; i < bytesToConvert.Length; i++)
+            {
+                result += bytesToConvert[i].ToString("x2");
+            }
             return result;
         }
         /// <summary>
